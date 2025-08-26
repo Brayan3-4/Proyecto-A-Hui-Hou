@@ -1,2 +1,2 @@
-# Proyecto-Geri-trico
-Plataforma digital para la gestión de historias clínicas en un hospital geriátrico.
+# Proyecto-A Hui Hou
+Plataforma digital para la gestión del inventario de una tienda.
