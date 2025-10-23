@@ -6,30 +6,30 @@ const featuredProducts = [
   {
     id: 1,
     name: "Almendras",
-    price: 15900,
-    image: "/organic-coconut-oil-jar-natural.jpg",
+    price: 18500,
+    image: "https://f.fcdn.app/imgs/d71a13/www.lamolienda.uy/moliuy/bf28/original/catalogo/000000000003083_000000000003083_1/2000-2000/almendras-peladas-tostadas-100g-almendra-pel-tostada-x-22-68.jpg",
     category: "Frutos secos",
   },
   {
     id: 2,
-    name: "Miel de Manuka Premium",
-    price: 45.99,
-    image: "/manuka-honey-jar-premium-natural.jpg",
-    category: "Superalimentos",
+    name: "Semillas de Chía",
+    price: 9000,
+    image: "https://unimarc.vtexassets.com/arquivos/ids/233406/000000000000575376-KG-01.jpg?v=638200265654700000",
+    category: "Semillas y granos",
   },
   {
     id: 3,
-    name: "Té Verde Matcha Ceremonial",
-    price: 32.99,
-    image: "/matcha-green-tea-powder-ceremonial.jpg",
-    category: "Tés y Hierbas",
+    name: "Miel Pura",
+    price: 18500,
+    image: "https://previews.123rf.com/images/kovalevaka/kovalevaka1708/kovalevaka170800023/84624517-liquid-honey-dripping-into-jar-from-dipper-isolated-on-white-background.jpg",
+    category: "Endulzantes naturales",
   },
   {
     id: 4,
-    name: "Semillas de Chía Orgánicas",
-    price: 18.99,
-    image: "/organic-chia-seeds-package-natural.jpg",
-    category: "Semillas y Granos",
+    name: "Mango Deshidratado",
+    price: 16500,
+    image: "https://frutosysemillas.com/cdn/shop/files/mango.jpg?v=1696626369",
+    category: "Frutas deshidratadas",
   },
 ]
 
@@ -59,7 +59,7 @@ export function FeaturedProducts() {
                 <div className="p-6">
                   <p className="text-sm text-primary font-medium mb-2">{product.category}</p>
                   <h3 className="font-semibold text-foreground mb-2 text-balance">{product.name}</h3>
-                  <p className="text-2xl font-bold text-foreground mb-4">${product.price}</p>
+                  <p className="text-2xl font-bold text-foreground mb-4">${product.price.toLocaleString("es-CO")}</p>
                   <Button className="w-full">Agregar al Carrito</Button>
                 </div>
               </CardContent>
