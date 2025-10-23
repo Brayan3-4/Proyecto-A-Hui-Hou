@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Playfair_Display } from "next/font/google"
+import { Inter, Playfair_Display, Audiowide } from "next/font/google"
 import { AuthProvider } from "@/components/auth/auth-provider"
 import { CartProvider } from "@/components/cart/cart-provider"
 import "./globals.css"
@@ -17,6 +17,13 @@ const playfair = Playfair_Display({
   display: "swap",
 })
 
+const audiowide = Audiowide({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-audiowide",
+  display: "swap",
+})
+
 export const metadata: Metadata = {
   title: "A Hui Hou - Productos Naturales y Saludables",
   description: "Descubre nuestra selección de productos naturales y saludables para tu bienestar integral.",
@@ -29,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable} antialiased`}>
+    <html lang="es" className={`${inter.variable} ${playfair.variable} ${audiowide.variable} antialiased`}>
       <body className="font-sans">
         <AuthProvider>
           <CartProvider>{children}</CartProvider>

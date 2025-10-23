@@ -15,10 +15,10 @@ import { Plus, Edit, Trash2, Search } from "lucide-react"
 const initialProducts = [
   {
     id: 1,
-    name: "Almendras",
-    price: 15.900,
-    stock: 20,
-    category: "Frutos secos",
+    name: "Aceite de Coco Orgánico",
+    price: 24.99,
+    stock: 25,
+    category: "Aceites Naturales",
     status: "active",
   },
   {

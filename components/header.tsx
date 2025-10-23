@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -17,8 +17,17 @@ import {
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const { user, logout } = useAuth()
   const router = useRouter()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const handleLogout = () => {
     logout()
@@ -26,31 +35,39 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md"
+          : "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2"><img src="/logodef.png" alt="A Hui Hou Logo" className="h-16 w-auto object-contain"/>
-          <Link href="/" className="flex items-center"><img src="/logoLetra.png" alt="Logo A Hui Hou" className="h-10 md:h-12 w-auto object-contain"/></Link>
+        <div className="flex h-16 items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative h-10 w-10 transition-transform duration-300 group-hover:scale-110">
+              <img src="/logo.jpg" alt="A Hui Hou Logo" className="h-full w-full object-contain" />
+            </div>
+            <span className="font-orbitron text-xl font-bold text-foreground tracking-wider">A HUI HOU</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               href="/productos"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
             >
               Productos
             </Link>
             <Link
               href="/sobre-nosotros"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
             >
               Sobre Nosotros
             </Link>
             <Link
               href="/contacto"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
             >
               Contacto
             </Link>
@@ -103,7 +120,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t py-4">
+          <div className="md:hidden border-t py-4 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-4">
               <Link
                 href="/productos"

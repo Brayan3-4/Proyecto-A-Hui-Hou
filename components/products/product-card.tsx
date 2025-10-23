@@ -45,26 +45,26 @@ export function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <Card className="product-card border-0 shadow-sm group">
+    <Card className="product-card border-0 shadow-sm group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
       <CardContent className="p-0">
         <Link href={`/productos/${product.id}`}>
           <div className="aspect-square overflow-hidden rounded-t-lg relative">
             {discount > 0 && (
-              <Badge className="absolute top-2 left-2 z-10 bg-destructive text-destructive-foreground">
+              <Badge className="absolute top-2 left-2 z-10 bg-destructive text-destructive-foreground animate-pulse">
                 -{discount}%
               </Badge>
             )}
             <img
               src={product.image || "/placeholder.svg"}
               alt={product.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           </div>
         </Link>
         <div className="p-6">
           <p className="text-sm text-primary font-medium mb-2">{product.category}</p>
           <Link href={`/productos/${product.id}`}>
-            <h3 className="font-semibold text-foreground mb-2 text-balance hover:text-primary transition-colors">
+            <h3 className="font-semibold text-foreground mb-2 text-balance hover:text-primary transition-colors duration-300">
               {product.name}
             </h3>
           </Link>
@@ -93,7 +93,11 @@ export function ProductCard({ product }: ProductCardProps) {
             )}
           </div>
 
-          <Button className="w-full" disabled={!product.inStock} onClick={handleAddToCart}>
+          <Button
+            className="w-full hover:scale-105 transition-all duration-300"
+            disabled={!product.inStock}
+            onClick={handleAddToCart}
+          >
             <ShoppingCart className="h-4 w-4 mr-2" />
             {product.inStock ? "Agregar al Carrito" : "Agotado"}
           </Button>

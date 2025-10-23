@@ -4,82 +4,81 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Paleta natural A Hui Hou */
-  --background: #F5EBDC; /* Beige cálido */
-  --foreground: #2F2F2F; /* Gris oscuro para texto legible */
-
-  --card: #FFF8F0; /* Fondo crema para tarjetas */
-  --card-foreground: #2F2F2F;
-
-  --popover: #FFF8F0;
-  --popover-foreground: #2F2F2F;
-
-  --primary: #2B7C59; /* Verde oscuro */
-  --primary-foreground: #FFFFFF;
-
-  --secondary: #8FBF8F; /* Verde claro / menta */
-  --secondary-foreground: #2F2F2F;
-
-  --accent: #8B5E3C; /* Marrón natural para contraste */
-  --accent-foreground: #FFF8F0;
-
-  --muted: #D8C2AA; /* Tonalidad arena para fondos neutros */
-  --muted-foreground: #2F2F2F;
-
-  --border: #D8C2AA;
-  --input: #D8C2AA;
-  --ring: #8FBF8F;
+  /* Updated color palette with natural earth tones */
+  --background: oklch(0.98 0.01 120); /* Beige claro */
+  --foreground: oklch(0.35 0.08 160); /* Verde oscuro para texto */
+  --card: oklch(0.99 0.005 80);
+  --card-foreground: oklch(0.35 0.08 160);
+  --popover: oklch(0.99 0.005 80);
+  --popover-foreground: oklch(0.35 0.08 160);
+  --primary: oklch(0.45 0.12 165); /* Verde oscuro #2B7C59 */
+  --primary-foreground: oklch(0.98 0.01 120);
+  --secondary: oklch(0.65 0.08 145); /* Verde claro #7AA77A */
+  --secondary-foreground: oklch(0.25 0.05 160);
+  --muted: oklch(0.88 0.02 80); /* Beige/nuez #D6C5B2 */
+  --muted-foreground: oklch(0.5 0.06 160);
+  --accent: oklch(0.42 0.1 200); /* Azul oscuro/verde azulado #2B587D */
+  --accent-foreground: oklch(0.98 0.01 120);
+  --destructive: oklch(0.55 0.2 30);
+  --destructive-foreground: oklch(0.98 0.01 120);
+  --border: oklch(0.85 0.02 80);
+  --input: oklch(0.85 0.02 80);
+  --ring: oklch(0.45 0.12 165);
+  --chart-1: oklch(0.45 0.12 165); /* Verde oscuro */
+  --chart-2: oklch(0.65 0.08 145); /* Verde claro */
+  --chart-3: oklch(0.42 0.1 200); /* Azul verdoso */
+  --chart-4: oklch(0.65 0.12 50); /* Marrón claro */
+  --chart-5: oklch(0.5 0.15 40); /* Marrón rojizo */
   --radius: 0.625rem;
-
-  /* Sidebar */
-  --sidebar: #2B7C59;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #8FBF8F;
-  --sidebar-primary-foreground: #2F2F2F;
-  --sidebar-accent: #8B5E3C;
-  --sidebar-accent-foreground: #FFF8F0;
-  --sidebar-border: #D8C2AA;
-  --sidebar-ring: #8FBF8F;
+  --sidebar: oklch(0.98 0.01 120);
+  --sidebar-foreground: oklch(0.35 0.08 160);
+  --sidebar-primary: oklch(0.45 0.12 165);
+  --sidebar-primary-foreground: oklch(0.98 0.01 120);
+  --sidebar-accent: oklch(0.88 0.02 80);
+  --sidebar-accent-foreground: oklch(0.35 0.08 160);
+  --sidebar-border: oklch(0.85 0.02 80);
+  --sidebar-ring: oklch(0.45 0.12 165);
 }
 
-/* --- Modo oscuro --- */
 .dark {
-  --background: #2F2F2F;
-  --foreground: #F5EBDC;
-
-  --card: #3C3C3C;
-  --card-foreground: #F5EBDC;
-
-  --primary: #8FBF8F; /* Verde claro para destacar */
-  --primary-foreground: #2F2F2F;
-
-  --secondary: #2B7C59;
-  --secondary-foreground: #FFF8F0;
-
-  --accent: #8B5E3C;
-  --accent-foreground: #FFF8F0;
-
-  --muted: #444444;
-  --muted-foreground: #F5EBDC;
-
-  --border: #8B5E3C;
-  --input: #8B5E3C;
-  --ring: #8FBF8F;
-
-  --sidebar: #2B7C59;
-  --sidebar-foreground: #FFF8F0;
-  --sidebar-primary: #8FBF8F;
-  --sidebar-primary-foreground: #2F2F2F;
-  --sidebar-accent: #8B5E3C;
-  --sidebar-accent-foreground: #FFF8F0;
-  --sidebar-border: #8FBF8F;
-  --sidebar-ring: #8FBF8F;
+  /* Dark mode with adjusted natural tones */
+  --background: oklch(0.2 0.03 160); /* Verde muy oscuro */
+  --foreground: oklch(0.95 0.01 120); /* Beige claro para texto */
+  --card: oklch(0.25 0.04 160);
+  --card-foreground: oklch(0.95 0.01 120);
+  --popover: oklch(0.25 0.04 160);
+  --popover-foreground: oklch(0.95 0.01 120);
+  --primary: oklch(0.65 0.08 145); /* Verde claro en dark mode */
+  --primary-foreground: oklch(0.2 0.03 160);
+  --secondary: oklch(0.35 0.08 160); /* Verde oscuro */
+  --secondary-foreground: oklch(0.95 0.01 120);
+  --muted: oklch(0.3 0.04 160);
+  --muted-foreground: oklch(0.7 0.04 120);
+  --accent: oklch(0.5 0.1 200); /* Azul verdoso más claro */
+  --accent-foreground: oklch(0.95 0.01 120);
+  --destructive: oklch(0.5 0.2 30);
+  --destructive-foreground: oklch(0.95 0.01 120);
+  --border: oklch(0.3 0.04 160);
+  --input: oklch(0.3 0.04 160);
+  --ring: oklch(0.65 0.08 145);
+  --chart-1: oklch(0.65 0.08 145);
+  --chart-2: oklch(0.45 0.12 165);
+  --chart-3: oklch(0.5 0.1 200);
+  --chart-4: oklch(0.65 0.12 50);
+  --chart-5: oklch(0.5 0.15 40);
+  --sidebar: oklch(0.25 0.04 160);
+  --sidebar-foreground: oklch(0.95 0.01 120);
+  --sidebar-primary: oklch(0.65 0.08 145);
+  --sidebar-primary-foreground: oklch(0.2 0.03 160);
+  --sidebar-accent: oklch(0.3 0.04 160);
+  --sidebar-accent-foreground: oklch(0.95 0.01 120);
+  --sidebar-border: oklch(0.3 0.04 160);
+  --sidebar-ring: oklch(0.65 0.08 145);
 }
-
-
-
 
 @theme inline {
+  /* Actualizando a Audiowide para replicar la tipografía del logo */
+  --font-audiowide: "Audiowide", "Audiowide Fallback";
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -133,19 +132,55 @@
 }
 
 body {
-  background: linear-gradient(
-    180deg,
-    #EAF3EA 0%,
-    #F5EBDC 40%,
-    #FFF8F0 100%
-  );
-  color: var(--foreground);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
-
 
 /* Custom styles for A Hui Hou */
 .hero-gradient {
   background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+}
+
+/* Añadiendo estilo mejorado para texto con efecto tecnológico similar al logo */
+.tech-text {
+  font-family: var(--font-audiowide);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+/* Efecto de líneas horizontales atravesando el texto como en el logo */
+.tech-text::before,
+.tech-text::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--accent)) 20%,
+    hsl(var(--primary)) 50%,
+    hsl(var(--secondary)) 80%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+.tech-text::before {
+  top: 35%;
+}
+
+.tech-text::after {
+  bottom: 35%;
+}
+
+/* Puntos de circuito en los extremos */
+.tech-text::before {
+  box-shadow: -8px 0 0 2px hsl(var(--accent)), calc(100% + 8px) 0 0 2px hsl(var(--secondary));
 }
 
 .product-card {
