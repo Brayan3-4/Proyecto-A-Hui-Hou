@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # A Hui Hou - Tienda de Productos Naturales
 
 Una tienda en línea moderna y elegante especializada en productos naturales y saludables, construida con Next.js 14, React 19, TypeScript y Tailwind CSS.
@@ -146,3 +147,7 @@ Si tienes preguntas o necesitas ayuda, puedes:
 ---
 
 **A Hui Hou** - Productos naturales para una vida saludable 🌿
+=======
+# Proyecto-A Hui Hou
+Plataforma digital para la gestión del inventario de una tienda.
+>>>>>>> 22401d5cb090ec2e56ab07c9d51cf199bc93c2e9
