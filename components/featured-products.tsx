@@ -100,7 +100,7 @@ export function FeaturedProducts() {
                     <p className="text-sm text-primary font-medium mb-2">{product.category}</p>
                     <h3 className="font-semibold text-foreground mb-2 text-balance">{product.name}</h3>
                     <p className="text-2xl font-bold text-foreground mb-4">
-                      ${product.price.toLocaleString("es-CL", { minimumFractionDigits: 3 })}
+                      ${product.price.toLocaleString("es-CO")}
                     </p>
                     <Button className="w-full">Agregar al Carrito</Button>
                   </div>

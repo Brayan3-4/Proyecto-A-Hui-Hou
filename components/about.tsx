@@ -65,7 +65,7 @@ export function About() {
               }`}
             >
               <img
-                src="/natural-organic-farm-sustainable-agriculture.jpg"
+                src="/AHuiHou.jpg"
                 alt="Productos naturales y sostenibles"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
               />

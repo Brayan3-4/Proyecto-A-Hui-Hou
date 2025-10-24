@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -43,15 +44,35 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
+          {/* ---------- LOGO (DOS IMÁGENES) ---------- */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative h-10 w-10 transition-transform duration-300 group-hover:scale-110">
-              <img src="/logo.jpg" alt="A Hui Hou Logo" className="h-full w-full object-contain" />
+            {/* Primera imagen: ícono o símbolo */}
+            <div className="relative transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logodef.png"
+                alt="Símbolo A Hui Hou"
+                width={80}
+                height={80}
+                className="object-contain"
+                priority
+              />
             </div>
-            <span className="font-orbitron text-xl font-bold text-foreground tracking-wider">A HUI HOU</span>
+
+            {/* Segunda imagen: texto del logo o nombre */}
+            <div className="relative transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/logoLetra.png"
+                alt="Texto A Hui Hou"
+                width={220}
+                height={60}
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* ---------- NAVEGACIÓN DESKTOP ---------- */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               href="/productos"
@@ -73,7 +94,7 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Desktop Actions */}
+          {/* ---------- ACCIONES DESKTOP ---------- */}
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <DropdownMenu>
@@ -112,13 +133,18 @@ export function Header() {
             <CartButton />
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button variant="ghost" size="sm" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {/* ---------- BOTÓN MENÚ MÓVIL ---------- */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
             {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* ---------- NAVEGACIÓN MÓVIL ---------- */}
         {isMenuOpen && (
           <div className="md:hidden border-t py-4 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-4">
@@ -151,7 +177,12 @@ export function Header() {
                         </Button>
                       </Link>
                     )}
-                    <Button variant="ghost" size="sm" className="w-full justify-start" onClick={handleLogout}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full justify-start"
+                      onClick={handleLogout}
+                    >
                       <LogOut className="h-4 w-4 mr-2" />
                       Cerrar Sesión
                     </Button>

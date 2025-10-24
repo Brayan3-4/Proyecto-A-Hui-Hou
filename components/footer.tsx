@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -8,12 +9,25 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="h-8 w-8 rounded-full bg-primary"></div>
-              <span className="font-playfair text-2xl font-bold">A Hui Hou</span>
+              {/* Logo circular reemplazado por imagen */}
+              <Image
+                src="/AHuiHouB.png"
+                alt="Logo A Hui Hou"
+                width={120}
+                height={80}
+                className="object-contain"
+              />
+              {/* Texto reemplazado por imagen */}
+              <Image
+                src="/AHuiHouLB.png"
+                alt="A Hui Hou"
+                width={220}
+                height={40}
+                className="object-contain"
+              />
             </Link>
             <p className="text-background/80 mb-4 max-w-md text-balance">
-              Tu tienda de confianza para productos naturales y saludables. Comprometidos con tu bienestar y el cuidado
-              del planeta.
+              Sumérgete en las profundidades de nuestro mundo saludable.
             </p>
           </div>
 
@@ -48,9 +62,10 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Contacto</h3>
             <ul className="space-y-2 text-background/80">
-              <li>info@ahuihou.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>Lun - Vie: 9:00 - 18:00</li>
+              <li>AHuiHou6063@gmail.com</li>
+              <li>+57 3151604094</li>
+              <li>Lun - Sab: 9:00 - 17:00</li>
+              <li>Domingos: No hay servicio</li>
             </ul>
           </div>
         </div>

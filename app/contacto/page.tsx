@@ -38,7 +38,7 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                      <p className="text-muted-foreground">contacto@ahuihou.com</p>
+                      <p className="text-muted-foreground">AHuiHou6063@gmail.com</p>
                       <p className="text-sm text-muted-foreground">Respuesta en 24-48 horas</p>
                     </div>
                   </div>
@@ -49,8 +49,8 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Teléfono</h3>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                      <p className="text-sm text-muted-foreground">Lun - Vie: 9:00 AM - 6:00 PM</p>
+                      <p className="text-muted-foreground">+57 3151604094</p>
+                      <p className="text-sm text-muted-foreground">Lun - Sab: 10:00 AM - 4:30 PM</p>
                     </div>
                   </div>
 
@@ -60,8 +60,8 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Dirección</h3>
-                      <p className="text-muted-foreground">123 Calle Natural</p>
-                      <p className="text-muted-foreground">Ciudad Verde, CV 12345</p>
+                      <p className="text-muted-foreground">Avenida 15 # 16 - 03</p>
+                      <p className="text-muted-foreground">Barrio Ballenitas</p>
                     </div>
                   </div>
 
@@ -71,8 +71,7 @@ export default function ContactoPage() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">Horario de Atención</h3>
-                      <p className="text-muted-foreground">Lunes - Viernes: 9:00 AM - 6:00 PM</p>
-                      <p className="text-muted-foreground">Sábado: 10:00 AM - 4:00 PM</p>
+                      <p className="text-muted-foreground">Lunes - Sábado: 9:00 AM - 5:00 PM</p>
                       <p className="text-muted-foreground">Domingo: Cerrado</p>
                     </div>
                   </div>
@@ -132,14 +131,14 @@ export default function ContactoPage() {
               <div className="bg-background rounded-lg p-6">
                 <h3 className="font-semibold text-foreground mb-2">¿Ofrecen envío gratis?</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Sí, ofrecemos envío gratis en pedidos superiores a $50. Para pedidos menores, el costo de envío se
+                  Sí, ofrecemos envío gratis en pedidos superiores a $30.000 Para pedidos menores, el costo de envío se
                   calcula según tu ubicación.
                 </p>
               </div>
               <div className="bg-background rounded-lg p-6">
                 <h3 className="font-semibold text-foreground mb-2">¿Puedo devolver un producto?</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Aceptamos devoluciones dentro de los 30 días posteriores a la compra. El producto debe estar sin abrir
+                  Aceptamos devoluciones dentro de 24 horas posteriores a la compra. El producto debe estar sin abrir
                   y en su empaque original.
                 </p>
               </div>

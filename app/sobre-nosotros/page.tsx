@@ -7,12 +7,13 @@ export default function SobreNosotrosPage() {
       <section className="relative py-20 lg:py-32 bg-gradient-to-b from-primary/10 to-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              Sobre <span className="text-primary">A Hui Hou</span>
+            <h1 className="tech-text text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
+              A Hui Hou<span className="text-primary"></span>
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground text-balance">
-              Conectando la sabiduría ancestral con el bienestar moderno a través de productos naturales de la más alta
-              calidad
+
+            {/* Texto modificado con la fuente del header */}
+            <p className="tech-text text-lg sm:text-xl text-primary mt-4">
+              Sumérgete en las profundidades de nuestro mundo saludable
             </p>
           </div>
         </div>
@@ -25,7 +26,7 @@ export default function SobreNosotrosPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="aspect-[4/3] overflow-hidden rounded-lg">
                 <img
-                  src="/natural-organic-farm-sustainable-agriculture.jpg"
+                  src="/AHuiHou.jpg"
                   alt="Agricultura sostenible"
                   className="w-full h-full object-cover"
                 />
@@ -117,20 +118,17 @@ export default function SobreNosotrosPage() {
             </h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-muted-foreground leading-relaxed mb-6">
-                A Hui Hou nació de una pasión por el bienestar natural y el respeto por la tierra. Fundada en 2020,
-                comenzamos como un pequeño proyecto familiar con el sueño de compartir los beneficios de productos
-                naturales de alta calidad con nuestra comunidad.
+                A Hui Hou nació del deseo compartido de tres personas con una misma visión: volver a lo esencial. En un mundo que avanza a un ritmo vertiginoso, decidimos detenernos un momento y mirar hacia atrás, hacia lo natural, hacia lo auténtico. Así comenzó nuestro viaje.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Lo que comenzó en un mercado local ha crecido hasta convertirse en una tienda en línea que sirve a
-                clientes en todo el país. A pesar de nuestro crecimiento, mantenemos los mismos valores que nos
-                inspiraron desde el principio: calidad, sostenibilidad y un compromiso genuino con el bienestar de
-                nuestros clientes.
+                El nombre A Hui Hou significa “hasta que nos volvamos a encontrar”, una expresión hawaiana que representa el reencuentro, la continuidad y el vínculo que nunca se rompe. Y no es casualidad que nuestro logotipo lleve una ballena: las ballenas francas regresan cada año al lugar donde nacieron, enseñando a sus crías el camino de vuelta. Esa fidelidad transmitida de generación en generación simboliza exactamente lo que somos: una marca que regresa a sus raíces para compartir lo mejor de la naturaleza, una y otra vez.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Hoy, trabajamos con más de 50 productores locales y orgánicos, ofreciendo una cuidadosa selección de
-                productos que nutren el cuerpo y el alma. Cada compra que realizas apoya no solo tu salud, sino también
-                a las familias y comunidades que cultivan estos productos con amor y dedicación.
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Somos tres mentes distintas unidas por un propósito común: crear productos que conecten a las personas con su bienestar, con el planeta y con los valores que no deberían perderse. Cada decisión que tomamos desde los ingredientes hasta el diseño refleja ese compromiso con lo auténtico, lo consciente y lo sostenible.
+              </p>
+              {/* Aumentamos la separación entre el 3er y 4to párrafo */}
+              <p className="text-muted-foreground leading-relaxed mt-8">
+                Nuestro sueño es que cada experiencia con A Hui Hou te recuerde que, al igual que las ballenas, siempre es posible volver a lo que realmente importa. Porque más que una marca, somos un viaje de regreso: hacia la naturaleza, hacia el equilibrio y hacia nosotros mismos.
               </p>
             </div>
           </div>
