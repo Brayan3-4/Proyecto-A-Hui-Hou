@@ -1,5 +1,6 @@
 import { LoginForm } from "@/components/auth/login-form"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function LoginPage() {
   return (
@@ -7,8 +8,21 @@ export default function LoginPage() {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <Link href="/" className="flex items-center justify-center space-x-2 mb-8">
-            <div className="h-10 w-10 rounded-full bg-primary"></div>
-            <span className="font-playfair text-3xl font-bold text-foreground">A Hui Hou</span>
+            {/* Imagen que reemplaza el círculo verde */}
+            <Image
+              src="/logodef.png" // 🔹 Cambia esta ruta por la de tu imagen
+              alt="Logo"
+              width={90}
+              height={40}
+              className="rounded-full"
+            />
+            {/* Imagen que reemplaza el texto "A Hui Hou" */}
+            <Image
+              src="/logoLetra.png" // 🔹 Cambia esta ruta por la de tu imagen de texto
+              alt="A Hui Hou"
+              width={300}
+              height={100}
+            />
           </Link>
           <h2 className="font-playfair text-3xl font-bold text-foreground">Iniciar Sesión</h2>
           <p className="mt-2 text-muted-foreground">Accede a tu cuenta para continuar</p>
