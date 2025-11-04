@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import type React from "react"
 import Image from "next/image"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -30,16 +31,22 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleLogout = () => {
+  const handleLogout = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
     logout()
+    setIsMenuOpen(false)
     router.push("/")
+    router.refresh()
   }
 
   return (
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-md"
+          ? "bg-[#2B587D]/95 backdrop-blur supports-[backdrop-filter]:bg-[#2B587D]/90 shadow-md border-[#2B587D]/30"
           : "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
       }`}
     >
@@ -72,51 +79,80 @@ export function Header() {
             </div>
           </Link>
 
-          {/* ---------- NAVEGACIÓN DESKTOP ---------- */}
+          {/* ---------- NAVEGACIÓN ESCRITORIO ---------- */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
               href="/productos"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
+              className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${
+                isScrolled ? "text-white/90 hover:text-white" : "text-muted-foreground hover:text-[#2B587D]"
+              }`}
             >
               Productos
             </Link>
             <Link
               href="/sobre-nosotros"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
+              className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${
+                isScrolled ? "text-white/90 hover:text-white" : "text-muted-foreground hover:text-[#2B587D]"
+              }`}
             >
               Sobre Nosotros
             </Link>
             <Link
               href="/contacto"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-110"
+              className={`text-sm font-medium transition-all duration-300 hover:scale-110 ${
+                isScrolled ? "text-white/90 hover:text-white" : "text-muted-foreground hover:text-[#2B587D]"
+              }`}
             >
               Contacto
             </Link>
           </nav>
 
-          {/* ---------- ACCIONES DESKTOP ---------- */}
+          {/* ---------- ACCIONES (USUARIO + CARRITO) ---------- */}
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className={`transition-all duration-300 hover:scale-105 ${
+                      isScrolled ? "text-white hover:bg-white/10" : "hover:bg-[#2B587D]/10 hover:text-[#2B587D]"
+                    }`}
+                  >
                     <User className="h-4 w-4 mr-2" />
                     {user.name}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Mi Perfil</DropdownMenuItem>
-                  <DropdownMenuItem>Mis Pedidos</DropdownMenuItem>
+                <DropdownMenuContent align="end" className="w-56 z-[100]" sideOffset={8}>
+                  <DropdownMenuItem asChild>
+                    <Link href="/perfil" className="cursor-pointer">
+                      Mi Perfil
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/perfil?tab=orders" className="cursor-pointer">
+                      Mis Pedidos
+                    </Link>
+                  </DropdownMenuItem>
                   {user.role === "admin" && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/admin">Panel Admin</Link>
+                        <Link href="/admin" className="cursor-pointer">
+                          Panel Admin
+                        </Link>
                       </DropdownMenuItem>
                     </>
                   )}
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout}>
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      handleLogout()
+                    }}
+                    className="cursor-pointer text-destructive focus:text-destructive"
+                  >
                     <LogOut className="h-4 w-4 mr-2" />
                     Cerrar Sesión
                   </DropdownMenuItem>
@@ -124,7 +160,13 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <Link href="/login">
-                <Button variant="ghost" size="sm">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={`transition-all duration-300 hover:scale-105 ${
+                    isScrolled ? "text-white hover:bg-white/10" : "hover:bg-[#2B587D]/10 hover:text-[#2B587D]"
+                  }`}
+                >
                   <User className="h-4 w-4 mr-2" />
                   Iniciar Sesión
                 </Button>
@@ -134,44 +176,36 @@ export function Header() {
           </div>
 
           {/* ---------- BOTÓN MENÚ MÓVIL ---------- */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <Button variant="ghost" size="sm" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </Button>
         </div>
 
-        {/* ---------- NAVEGACIÓN MÓVIL ---------- */}
+        {/* ---------- MENÚ MÓVIL ---------- */}
         {isMenuOpen && (
           <div className="md:hidden border-t py-4 animate-in slide-in-from-top duration-300">
             <nav className="flex flex-col space-y-4">
-              <Link
-                href="/productos"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/productos" className="text-sm font-medium text-muted-foreground hover:text-foreground">
                 Productos
               </Link>
-              <Link
-                href="/sobre-nosotros"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/sobre-nosotros" className="text-sm font-medium text-muted-foreground hover:text-foreground">
                 Sobre Nosotros
               </Link>
-              <Link
-                href="/contacto"
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/contacto" className="text-sm font-medium text-muted-foreground hover:text-foreground">
                 Contacto
               </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t">
                 {user ? (
                   <>
                     <div className="text-sm font-medium text-foreground">Hola, {user.name}</div>
+                    <Link href="/perfil" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="ghost" size="sm" className="w-full justify-start">
+                        <User className="h-4 w-4 mr-2" />
+                        Mi Perfil
+                      </Button>
+                    </Link>
                     {user.role === "admin" && (
-                      <Link href="/admin">
+                      <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
                         <Button variant="ghost" size="sm" className="w-full justify-start">
                           Panel Admin
                         </Button>
@@ -181,14 +215,14 @@ export function Header() {
                       variant="ghost"
                       size="sm"
                       className="w-full justify-start"
-                      onClick={handleLogout}
+                      onClick={(e) => handleLogout(e)}
                     >
                       <LogOut className="h-4 w-4 mr-2" />
                       Cerrar Sesión
                     </Button>
                   </>
                 ) : (
-                  <Link href="/login">
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                     <Button variant="ghost" size="sm" className="w-full justify-start">
                       <User className="h-4 w-4 mr-2" />
                       Iniciar Sesión

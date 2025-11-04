@@ -1,17 +1,31 @@
 import { ContactForm } from "@/components/contact/contact-form"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, ArrowLeft } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function ContactoPage() {
   return (
     <div className="min-h-screen">
+      <div className="fixed top-20 left-4 z-50">
+        <Link href="/">
+          <Button
+            size="icon"
+            variant="outline"
+            className="h-12 w-12 rounded-full shadow-lg bg-background/95 backdrop-blur-sm border-2 hover:scale-110 hover:shadow-xl transition-all duration-300"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-b from-primary/10 to-background">
+      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-[#2B587D] via-[#3B9B9F] to-[#2B7C59]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              Contáctanos
+            <h1 className="font-audiowide text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 text-balance tracking-wider">
+              CONTÁCTANOS
             </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground text-balance">
+            <p className="text-lg sm:text-xl text-white/90 text-balance">
               Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos lo antes posible
             </p>
           </div>

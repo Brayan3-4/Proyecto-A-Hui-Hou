@@ -4,12 +4,17 @@ import { useCart } from "./cart-provider"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react"
+import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useToast } from "@/hooks/use-toast"
+import { formatPrice } from "@/lib/utils"
 
 export function CartPage() {
   const { state, dispatch } = useCart()
+  const router = useRouter()
+  const { toast } = useToast()
 
   const updateQuantity = (id: number, quantity: number) => {
     dispatch({ type: "UPDATE_QUANTITY", payload: { id, quantity } })
@@ -17,6 +22,17 @@ export function CartPage() {
 
   const removeItem = (id: number) => {
     dispatch({ type: "REMOVE_ITEM", payload: id })
+  }
+
+  const handleCheckout = () => {
+    toast({
+      title: "Procesando pedido",
+      description: "Redirigiendo al checkout...",
+    })
+    // Aquí iría la lógica real de checkout
+    setTimeout(() => {
+      router.push("/checkout")
+    }, 1000)
   }
 
   if (state.items.length === 0) {
@@ -36,6 +52,11 @@ export function CartPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      <Button variant="ghost" className="mb-6" onClick={() => router.back()}>
+        <ArrowLeft className="h-4 w-4 mr-2" />
+        Volver
+      </Button>
+
       <div className="mb-8">
         <h1 className="font-playfair text-3xl font-bold text-foreground mb-2">Carrito de Compras</h1>
         <p className="text-muted-foreground">
@@ -62,7 +83,7 @@ export function CartPage() {
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold text-foreground truncate">{item.name}</h3>
                     <p className="text-sm text-muted-foreground">{item.category}</p>
-                    <p className="font-semibold text-primary mt-1">${item.price.toFixed(2)}</p>
+                    <p className="font-semibold text-primary mt-1">${formatPrice(item.price)}</p>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -111,7 +132,7 @@ export function CartPage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>Subtotal</span>
-                  <span>${state.total.toFixed(2)}</span>
+                  <span>${formatPrice(state.total)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>Envío</span>
@@ -120,11 +141,11 @@ export function CartPage() {
                 <Separator />
                 <div className="flex justify-between font-semibold">
                   <span>Total</span>
-                  <span>${state.total.toFixed(2)}</span>
+                  <span>${formatPrice(state.total)}</span>
                 </div>
               </div>
 
-              <Button className="w-full" size="lg">
+              <Button className="w-full" size="lg" onClick={handleCheckout}>
                 Proceder al Checkout
               </Button>
 

@@ -1,18 +1,30 @@
-import { Leaf, Heart, Users, Award } from "lucide-react"
+import { Leaf, Heart, Users, Award, ArrowLeft } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function SobreNosotrosPage() {
   return (
     <div className="min-h-screen">
+      <div className="fixed top-20 left-4 z-50">
+        <Link href="/">
+          <Button
+            size="icon"
+            variant="outline"
+            className="h-12 w-12 rounded-full shadow-lg bg-background/95 backdrop-blur-sm border-2 hover:scale-110 hover:shadow-xl transition-all duration-300"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-b from-primary/10 to-background">
+      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-[#2B587D] via-[#3B9B9F] to-[#2B7C59]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="tech-text text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              A Hui Hou<span className="text-primary"></span>
+            <h1 className="font-audiowide text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 text-balance tracking-wider">
+               <span className="text-white/90">A HUI HOU</span>
             </h1>
-
-            {/* Texto modificado con la fuente del header */}
-            <p className="tech-text text-lg sm:text-xl text-primary mt-4">
+            <p className="text-lg sm:text-xl text-white/90 text-balance">
               Sumérgete en las profundidades de nuestro mundo saludable
             </p>
           </div>
@@ -54,7 +66,7 @@ export default function SobreNosotrosPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 lg:py-24 bg-muted/50">
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-[#3B9B9F]/10 via-[#7AA77A]/10 to-[#2B7C59]/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">

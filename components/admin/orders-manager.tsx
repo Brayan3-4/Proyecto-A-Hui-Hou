@@ -1,8 +1,12 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Eye, Package } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import { useState } from "react"
 
 // Simulación de pedidos
 const orders = [
@@ -45,6 +49,46 @@ const orders = [
 ]
 
 export function OrdersManager() {
+  const [orders, setOrders] = useState([
+    {
+      id: "ORD-001",
+      customer: "María González",
+      email: "maria@email.com",
+      total: 67.98,
+      status: "pending",
+      date: "2024-01-15",
+      items: 3,
+    },
+    {
+      id: "ORD-002",
+      customer: "Carlos Ruiz",
+      email: "carlos@email.com",
+      total: 24.99,
+      status: "shipped",
+      date: "2024-01-14",
+      items: 1,
+    },
+    {
+      id: "ORD-003",
+      customer: "Ana López",
+      email: "ana@email.com",
+      total: 156.47,
+      status: "delivered",
+      date: "2024-01-13",
+      items: 5,
+    },
+    {
+      id: "ORD-004",
+      customer: "Pedro Martín",
+      email: "pedro@email.com",
+      total: 89.99,
+      status: "processing",
+      date: "2024-01-12",
+      items: 2,
+    },
+  ])
+  const { toast } = useToast()
+
   const getStatusBadge = (status: string) => {
     const statusConfig = {
       pending: { label: "Pendiente", variant: "secondary" as const },
@@ -55,6 +99,20 @@ export function OrdersManager() {
 
     const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending
     return <Badge variant={config.variant}>{config.label}</Badge>
+  }
+
+  const handleViewOrder = (orderId: string) => {
+    toast({
+      title: "Ver pedido",
+      description: `Mostrando detalles del pedido ${orderId}`,
+    })
+  }
+
+  const handleUpdateStatus = (orderId: string) => {
+    toast({
+      title: "Actualizar estado",
+      description: `Actualizando estado del pedido ${orderId}`,
+    })
   }
 
   return (
@@ -92,10 +150,10 @@ export function OrdersManager() {
                   <TableCell>{getStatusBadge(order.status)}</TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" onClick={() => handleViewOrder(order.id)}>
                         <Eye className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" onClick={() => handleUpdateStatus(order.id)}>
                         <Package className="h-4 w-4" />
                       </Button>
                     </div>

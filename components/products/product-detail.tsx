@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Star, ShoppingCart, Heart, Share2, Minus, Plus } from "lucide-react"
+import { Star, ShoppingCart, Heart, Share2, Minus, Plus, ArrowLeft } from "lucide-react"
 import { useCart } from "@/components/cart/cart-provider"
+import { useToast } from "@/hooks/use-toast"
+import { formatPrice } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 interface Product {
   id: number
@@ -36,6 +39,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const [quantity, setQuantity] = useState(1)
   const [isFavorite, setIsFavorite] = useState(false)
   const { dispatch } = useCart()
+  const { toast } = useToast()
+  const router = useRouter()
 
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -63,13 +68,52 @@ export function ProductDetail({ product }: ProductDetailProps) {
         },
       })
     }
+    toast({
+      title: "Producto agregado",
+      description: `${quantity} ${quantity === 1 ? "unidad" : "unidades"} de ${product.name} agregadas al carrito`,
+    })
+  }
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: product.description,
+          url: window.location.href,
+        })
+      } catch (error) {
+        console.log("Error sharing:", error)
+      }
+    } else {
+      // Copiar al portapapeles
+      navigator.clipboard.writeText(window.location.href)
+      toast({
+        title: "Enlace copiado",
+        description: "El enlace del producto se copió al portapapeles",
+      })
+    }
+  }
+
+  const handleToggleFavorite = () => {
+    setIsFavorite(!isFavorite)
+    toast({
+      title: isFavorite ? "Eliminado de favoritos" : "Agregado a favoritos",
+      description: isFavorite
+        ? `${product.name} se eliminó de tus favoritos`
+        : `${product.name} se agregó a tus favoritos`,
+    })
   }
 
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <Button variant="ghost" className="mb-6" onClick={() => router.back()}>
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Volver
+        </Button>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Imágenes del producto */}
           <div className="space-y-4">
             <div className="aspect-square overflow-hidden rounded-lg relative">
               {discount > 0 && (
@@ -104,7 +148,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
             )}
           </div>
 
-          {/* Información del producto */}
           <div className="space-y-6">
             <div>
               <Badge variant="secondary" className="mb-2">
@@ -113,7 +156,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <h1 className="font-playfair text-3xl sm:text-4xl font-bold text-foreground mb-4">{product.name}</h1>
               <p className="text-lg text-muted-foreground mb-4">{product.description}</p>
 
-              {/* Rating */}
               <div className="flex items-center gap-2 mb-6">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
@@ -131,15 +173,15 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </div>
             </div>
 
-            {/* Precio */}
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-bold text-foreground">${product.price}</span>
+              <span className="text-3xl font-bold text-foreground">${formatPrice(product.price)}</span>
               {product.originalPrice && (
-                <span className="text-xl text-muted-foreground line-through">${product.originalPrice}</span>
+                <span className="text-xl text-muted-foreground line-through">
+                  ${formatPrice(product.originalPrice)}
+                </span>
               )}
             </div>
 
-            {/* Stock */}
             <div className="text-sm text-muted-foreground">
               {product.inStock ? (
                 <span className="text-green-600">✓ En stock ({product.stock} disponibles)</span>
@@ -148,7 +190,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
               )}
             </div>
 
-            {/* Cantidad y acciones */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <div className="flex items-center border rounded-lg">
@@ -165,7 +206,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
-                <span className="text-sm text-muted-foreground">Total: ${(product.price * quantity).toFixed(2)}</span>
+                <span className="text-sm text-muted-foreground">Total: ${formatPrice(product.price * quantity)}</span>
               </div>
 
               <div className="flex gap-3">
@@ -173,10 +214,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Agregar al Carrito
                 </Button>
-                <Button variant="outline" size="icon" onClick={() => setIsFavorite(!isFavorite)}>
+                <Button variant="outline" size="icon" onClick={handleToggleFavorite}>
                   <Heart className={`h-4 w-4 ${isFavorite ? "fill-red-500 text-red-500" : ""}`} />
                 </Button>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" onClick={handleShare}>
                   <Share2 className="h-4 w-4" />
                 </Button>
               </div>
@@ -184,7 +225,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
 
-        {/* Información detallada */}
         <div className="mt-16">
           <Tabs defaultValue="description" className="w-full">
             <TabsList className="grid w-full grid-cols-3">

@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { useCart } from "@/components/cart/cart-provider"
+import { useToast } from "@/hooks/use-toast"
 
 const featuredProducts = [
   {
@@ -39,6 +41,8 @@ const featuredProducts = [
 export function FeaturedProducts() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const { dispatch } = useCart()
+  const { toast } = useToast()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,15 +65,37 @@ export function FeaturedProducts() {
     }
   }, [])
 
+  const handleAddToCart = (product: (typeof featuredProducts)[0]) => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        category: product.category,
+      },
+    })
+    toast({
+      title: "Producto agregado",
+      description: `${product.name} se agregó al carrito`,
+    })
+  }
+
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-background">
+    <section
+      ref={sectionRef}
+      className="py-16 lg:py-24 bg-gradient-to-br from-[#5dd9c1]/5 via-background to-[#7AA77A]/5"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className={`text-center mb-12 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-foreground mb-4">Productos Destacados</h2>
+          <h2 className="font-playfair text-3xl sm:text-4xl font-bold mb-4">
+            <span className="circuit-gradient-text">Productos Destacados</span>
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance">
             Una selección especial de nuestros productos más valorados por su calidad excepcional y beneficios para tu
             bienestar.
@@ -87,7 +113,7 @@ export function FeaturedProducts() {
                 transitionDelay: isVisible ? `${index * 150}ms` : "0ms",
               }}
             >
-              <Card className="product-card border-0 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
+              <Card className="product-card border-0 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group hover:border-2 hover:border-[#5dd9c1]">
                 <CardContent className="p-0">
                   <div className="aspect-square overflow-hidden bg-card">
                     <img
@@ -99,10 +125,10 @@ export function FeaturedProducts() {
                   <div className="p-6">
                     <p className="text-sm text-primary font-medium mb-2">{product.category}</p>
                     <h3 className="font-semibold text-foreground mb-2 text-balance">{product.name}</h3>
-                    <p className="text-2xl font-bold text-foreground mb-4">
-                      ${product.price.toLocaleString("es-CO")}
-                    </p>
-                    <Button className="w-full">Agregar al Carrito</Button>
+                    <p className="text-2xl font-bold text-foreground mb-4">${product.price.toLocaleString("es-CO")}</p>
+                    <Button className="w-full" onClick={() => handleAddToCart(product)}>
+                      Agregar al Carrito
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

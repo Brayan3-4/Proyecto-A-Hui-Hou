@@ -5,7 +5,6 @@ import { ProductCard } from "./product-card"
 import { ProductFilters } from "./product-filters"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
-
 // Simulación de productos
 const products = [
   // 🥜 Frutos secos

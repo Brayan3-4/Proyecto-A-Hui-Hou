@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Star, ShoppingCart } from "lucide-react"
 import { useCart } from "@/components/cart/cart-provider"
+import { formatPrice } from "@/lib/utils"
 
 interface Product {
   id: number
@@ -87,9 +88,9 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Precio */}
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl font-bold text-foreground">${product.price}</span>
+            <span className="text-2xl font-bold text-foreground">${formatPrice(product.price)}</span>
             {product.originalPrice && (
-              <span className="text-sm text-muted-foreground line-through">${product.originalPrice}</span>
+              <span className="text-sm text-muted-foreground line-through">${formatPrice(product.originalPrice)}</span>
             )}
           </div>
 

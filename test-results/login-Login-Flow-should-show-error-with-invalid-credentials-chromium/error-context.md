@@ -1,0 +1,42 @@
+# Page snapshot
+
+```yaml
+- generic [active]:
+  - alert [ref=e1]
+  - dialog [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - heading "Build Error" [level=1] [ref=e7]
+        - paragraph [ref=e8]: Failed to compile
+        - generic [ref=e9]:
+          - text: Next.js (14.2.25) is outdated
+          - link "(learn more)" [ref=e11] [cursor=pointer]:
+            - /url: https://nextjs.org/docs/messages/version-staleness
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - link "./node_modules/@radix-ui/react-collection/node_modules/@radix-ui/react-slot/dist/index.mjs" [ref=e14] [cursor=pointer]:
+            - text: ./node_modules/@radix-ui/react-collection/node_modules/@radix-ui/react-slot/dist/index.mjs
+            - img [ref=e15]
+          - generic [ref=e19]:
+            - generic [ref=e20]: "Error: ENOENT: no such file or directory, open 'C:\\Users\\ASUS\\Downloads\\code\\node_modules\\@radix-ui\\react-collection\\node_modules\\@radix-ui\\react-slot\\dist\\index.mjs' Import trace for requested module:"
+            - link "./node_modules/@radix-ui/react-collection/node_modules/@radix-ui/react-slot/dist/index.mjs" [ref=e21] [cursor=pointer]:
+              - text: ./node_modules/@radix-ui/react-collection/node_modules/@radix-ui/react-slot/dist/index.mjs
+              - img [ref=e22]
+            - link "./node_modules/@radix-ui/react-collection/dist/index.mjs" [ref=e26] [cursor=pointer]:
+              - text: ./node_modules/@radix-ui/react-collection/dist/index.mjs
+              - img [ref=e27]
+            - link "./node_modules/@radix-ui/react-menu/dist/index.mjs" [ref=e31] [cursor=pointer]:
+              - text: ./node_modules/@radix-ui/react-menu/dist/index.mjs
+              - img [ref=e32]
+            - link "./node_modules/@radix-ui/react-dropdown-menu/dist/index.mjs" [ref=e36] [cursor=pointer]:
+              - text: ./node_modules/@radix-ui/react-dropdown-menu/dist/index.mjs
+              - img [ref=e37]
+            - link "./components/ui/dropdown-menu.tsx" [ref=e41] [cursor=pointer]:
+              - text: ./components/ui/dropdown-menu.tsx
+              - img [ref=e42]
+            - link "./components/header.tsx" [ref=e46] [cursor=pointer]:
+              - text: ./components/header.tsx
+              - img [ref=e47]
+        - contentinfo [ref=e51]:
+          - paragraph [ref=e52]: This error occurred during the build process and can only be dismissed by fixing the error.
+```

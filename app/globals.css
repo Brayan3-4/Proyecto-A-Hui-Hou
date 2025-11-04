@@ -1,7 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
-
 
 @custom-variant dark (&:is(.dark *));
 
@@ -141,7 +139,50 @@ body {
 
 /* Custom styles for A Hui Hou */
 .hero-gradient {
-  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--background)) 50%, hsl(var(--primary)) 100%);
+}
+
+/* Añadiendo gradiente tecnológico de circuitos azul-cyan-verde */
+.circuit-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #1e3a5f 0%,
+    #2b587d 15%,
+    #3a7ca5 30%,
+    #4fb3d4 45%,
+    #5dd9c1 60%,
+    #7aa77a 75%,
+    #2b7c59 90%,
+    #1a5c3f 100%
+  );
+}
+
+.circuit-gradient-text {
+  background: linear-gradient(135deg, #2b587d 0%, #4fb3d4 25%, #5dd9c1 50%, #7aa77a 75%, #2b7c59 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cyan-accent {
+  color: #5dd9c1;
+}
+
+.blue-teal {
+  color: #4fb3d4;
+}
+
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.text-balance {
+  text-wrap: balance;
 }
 
 /* Añadiendo estilo mejorado para texto con efecto tecnológico similar al logo */
@@ -166,7 +207,7 @@ body {
     transparent 0%,
     hsl(var(--accent)) 20%,
     hsl(var(--primary)) 50%,
-    hsl(var(--secondary)) 80%,
+    hsl(var(--accent)) 80%,
     transparent 100%
   );
   opacity: 0.6;
@@ -182,18 +223,5 @@ body {
 
 /* Puntos de circuito en los extremos */
 .tech-text::before {
-  box-shadow: -8px 0 0 2px hsl(var(--accent)), calc(100% + 8px) 0 0 2px hsl(var(--secondary));
-}
-
-.product-card {
-  transition: all 0.3s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.text-balance {
-  text-wrap: balance;
+  box-shadow: -8px 0 0 2px hsl(var(--accent)), calc(100% + 8px) 0 0 2px hsl(var(--accent));
 }
