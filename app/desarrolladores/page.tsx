@@ -84,7 +84,7 @@ export default function DesarrolladoresPage() {
           {developers.map((dev) => (
             <Card key={dev.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
               <Link href={`/desarrolladores/${dev.id}`} className="block">
-                <div className="h-48 bg-gradient-to-br from-[#2B587D] to-[#2B7C59] flex items-center justify-center relative overflow-hidden">
+                <div className="h-160 bg-gradient-to-br from-[#2B587D] to-[#2B7C59] flex items-center justify-center relative overflow-hidden">
                   {/* Foto del desarrollador */}
                   <img 
                     src={dev.foto} 
@@ -94,9 +94,6 @@ export default function DesarrolladoresPage() {
                       e.currentTarget.style.display = 'none'
                     }}
                   />
-                  <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform relative z-10">
-                    <User className="h-12 w-12 text-white" />
-                  </div>
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-20">
                     <span className="text-white font-medium bg-black/50 px-4 py-2 rounded-full">Ver Perfil Completo</span>
                   </div>

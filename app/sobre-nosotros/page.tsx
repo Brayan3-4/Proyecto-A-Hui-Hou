@@ -1,3 +1,5 @@
+"use client"
+
 import { Leaf, Heart, Users, Award, Phone, Mail, Github, Linkedin } from "lucide-react"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -154,7 +156,6 @@ export default function SobreNosotrosPage() {
       <section className="py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Texto */}
             <div>
               <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-foreground mb-8">
                 Nuestra Historia
@@ -171,8 +172,6 @@ export default function SobreNosotrosPage() {
                 </p>
               </div>
             </div>
-
-            {/* Imagen */}
             <div className="flex justify-center">
               <img
                 src="/Nuestra Historia.png"
@@ -180,14 +179,11 @@ export default function SobreNosotrosPage() {
                 className="rounded-2xl shadow-xl w-full max-w-lg object-cover"
               />
             </div>
-
           </div>
-
         </div>
-
       </section>
 
-      {/* Developers Section - SIN EFECTOS VISUALES EN LAS FOTOS */}
+      {/* Developers Section - CON EFECTO DE OVERLAY */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-[#2B587D]/5 via-[#3B9B9F]/5 to-[#2B7C59]/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
@@ -204,13 +200,20 @@ export default function SobreNosotrosPage() {
               {developers.map((dev) => (
                 <Card key={dev.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 group border-[#2B7C59]/20">
                   <Link href={`/desarrolladores/${dev.id}`} className="block">
-                    {/* Contenedor de la imagen: solo la foto, sin círculo, sin overlay, sin zoom */}
-                    <div className="h-120 bg-gradient-to-br from-[#2B587D] to-[#2B7C59] relative overflow-hidden">
+                    <div className="relative h-120 bg-gradient-to-br from-[#2B587D] to-[#2B7C59] overflow-hidden">
                       <img 
                         src={dev.foto} 
                         alt={`Foto de ${dev.nombre}`}
-                        className="w-full h-full object-cover"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                        }}
                       />
+                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-10">
+                        <span className="text-white font-medium bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm">
+                          Ver Perfil Completo
+                        </span>
+                      </div>
                     </div>
                   </Link>
                   <CardHeader className="pb-2">
