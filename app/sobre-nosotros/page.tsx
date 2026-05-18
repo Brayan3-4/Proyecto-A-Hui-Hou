@@ -152,31 +152,39 @@ export default function SobreNosotrosPage() {
 
       {/* Story Section */}
       <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-foreground mb-8 text-center">
-              Nuestra Historia
-            </h2>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                A Hui Hou nació de una pasión por el bienestar natural y el respeto por la tierra. Fundada en 2020,
-                comenzamos como un pequeño proyecto familiar con el sueño de compartir los beneficios de productos
-                naturales de alta calidad con nuestra comunidad.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Lo que comenzó en un mercado local ha crecido hasta convertirse en una tienda en línea que sirve a
-                clientes en todo el país. A pesar de nuestro crecimiento, mantenemos los mismos valores que nos
-                inspiraron desde el principio: calidad, sostenibilidad y un compromiso genuino con el bienestar de
-                nuestros clientes.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Hoy, trabajamos con más de 50 productores locales y orgánicos, ofreciendo una cuidadosa selección de
-                productos que nutren el cuerpo y el alma. Cada compra que realizas apoya no solo tu salud, sino también
-                a las familias y comunidades que cultivan estos productos con amor y dedicación.
-              </p>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Texto */}
+            <div>
+              <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-foreground mb-8">
+                Nuestra Historia
+              </h2>
+              <div className="space-y-6">
+                <p className="text-muted-foreground leading-8">
+                  A Hui Hou nació de una pasión por el bienestar natural y el respeto por la tierra. Fundada en 2020, comenzamos como un pequeño proyecto familiar con el sueño de compartir los beneficios de productos naturales de alta calidad con nuestra comunidad.
+                </p>
+                <p className="text-muted-foreground leading-8">
+                  Lo que comenzó en un mercado local ha crecido hasta convertirse en una tienda en línea que sirve a clientes en todo el país. A pesar de nuestro crecimiento, mantenemos los mismos valores que nos inspiraron desde el principio: calidad, sostenibilidad y un compromiso genuino con el bienestar de nuestros clientes.
+                </p>
+                <p className="text-muted-foreground leading-8">
+                  Hoy, trabajamos con más de 50 productores locales y orgánicos, ofreciendo una cuidadosa selección de productos que nutren el cuerpo y el alma. Cada compra que realizas apoya no solo tu salud, sino también a las familias y comunidades que cultivan estos productos con amor y dedicación.
+                </p>
+              </div>
             </div>
+
+            {/* Imagen */}
+            <div className="flex justify-center">
+              <img
+                src="/Nuestra Historia.png"
+                alt="Nuestra Historia"
+                className="rounded-2xl shadow-xl w-full max-w-lg object-cover"
+              />
+            </div>
+
           </div>
+
         </div>
+
       </section>
 
       {/* Developers Section - SIN EFECTOS VISUALES EN LAS FOTOS */}

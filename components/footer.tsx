@@ -114,10 +114,10 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Contacto</h3>
             <ul className="space-y-2 text-white/80 text-sm">
-              <li>info@ahuihou.com</li>
-              <li>+57 300 123 4567</li>
-              <li>Bogotá, Colombia</li>
-              <li>Lun - Vie: 9:00 - 18:00</li>
+              <li><b>Correo: </b><br />AHuiHou6063@gmail.com</li>
+              <li><b>Celular: </b><br />(+57) 315 160 40 94</li>
+              <li><b>Ubicación: </b><br />Avenida 15 # 16 - 03, Barrio Ballenitas</li>
+              <li><b>Horarios de atención: </b><br />Lunes - Viernes: 9:00 AM - 6:00 PM <br />Sábado: 10:00 AM - 4:00 PM<br />Domingo: Cerrado</li>
             </ul>
           </div>
         </div>

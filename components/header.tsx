@@ -9,17 +9,11 @@ import { Button } from "@/components/ui/button"
 import { useAuth } from "@/components/auth/auth-provider"
 import { CartButton } from "@/components/cart/cart-button"
 import { User, Menu, X, LogOut } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false)
   const { user, logout } = useAuth()
   const router = useRouter()
 
@@ -31,6 +25,18 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Cerrar menú de usuario al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.user-menu-container')) {
+        setShowUserMenu(false)
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [])
+
   const handleLogout = (e?: React.MouseEvent) => {
     if (e) {
       e.preventDefault()
@@ -38,6 +44,7 @@ export function Header() {
     }
     logout()
     setIsMenuOpen(false)
+    setShowUserMenu(false)
     router.push("/")
     router.refresh()
   }
@@ -106,54 +113,59 @@ export function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
-              <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className={`transition-all duration-300 hover:scale-105 ${
-                      isScrolled ? "text-white hover:bg-white/10" : "hover:bg-[#2B587D]/10 hover:text-[#2B587D]"
-                    }`}
-                  >
-                    <User className="h-4 w-4 mr-2" />
-                    {user.name}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 z-[100]" sideOffset={8}>
-                  <DropdownMenuItem asChild>
-                    <Link href="/perfil" className="cursor-pointer">
-                      Mi Perfil
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/perfil?tab=orders" className="cursor-pointer">
-                      Mis Pedidos
-                    </Link>
-                  </DropdownMenuItem>
-                  {user.role === "admin" && (
-                    <>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link href="/admin" className="cursor-pointer">
+              <div className="relative user-menu-container">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className={`transition-all duration-300 hover:scale-105 ${
+                    isScrolled ? "text-white hover:bg-white/10" : "hover:bg-[#2B587D]/10 hover:text-[#2B587D]"
+                  }`}
+                >
+                  <User className="h-4 w-4 mr-2" />
+                  {user.name}
+                </Button>
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-popover border z-50">
+                    <div className="py-1">
+                      <Link
+                        href="/perfil"
+                        className="block px-4 py-2 text-sm hover:bg-accent"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        Mi Perfil
+                      </Link>
+                      <Link
+                        href="/perfil?tab=orders"
+                        className="block px-4 py-2 text-sm hover:bg-accent"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        Mis Pedidos
+                      </Link>
+                      {user.role === "admin" && (
+                        <Link
+                          href="/admin"
+                          className="block px-4 py-2 text-sm hover:bg-accent"
+                          onClick={() => setShowUserMenu(false)}
+                        >
                           Panel Admin
                         </Link>
-                      </DropdownMenuItem>
-                    </>
-                  )}
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      handleLogout()
-                    }}
-                    className="cursor-pointer text-destructive focus:text-destructive"
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Cerrar Sesión
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      )}
+                      <hr className="my-1" />
+                      <button
+                        onClick={() => {
+                          setShowUserMenu(false)
+                          handleLogout()
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-destructive hover:bg-accent"
+                      >
+                        <LogOut className="h-4 w-4 inline mr-2" />
+                        Cerrar Sesión
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             ) : (
               <Link href="/login">
                 <Button
@@ -216,13 +228,11 @@ export function Header() {
                       </Button>
                     </Link>
                     {user.role === "admin" && (
-                      <>
-                        <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
-                          <Button variant="ghost" size="sm" className="w-full justify-start">
-                            Panel Admin
-                          </Button>
-                        </Link>
-                      </>
+                      <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
+                        <Button variant="ghost" size="sm" className="w-full justify-start">
+                          Panel Admin
+                        </Button>
+                      </Link>
                     )}
                     <Button variant="ghost" size="sm" className="w-full justify-start" onClick={(e) => handleLogout(e)}>
                       <LogOut className="h-4 w-4 mr-2" />
