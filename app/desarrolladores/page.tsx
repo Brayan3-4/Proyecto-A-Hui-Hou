@@ -84,7 +84,7 @@ export default function DesarrolladoresPage() {
           {developers.map((dev) => (
             <Card key={dev.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
               <Link href={`/desarrolladores/${dev.id}`} className="block">
-                <div className="h-160 bg-gradient-to-br from-[#2B587D] to-[#2B7C59] flex items-center justify-center relative overflow-hidden">
+                <div className="h-120 bg-gradient-to-br from-[#2B587D] to-[#2B7C59] flex items-center justify-center relative overflow-hidden">
                   {/* Foto del desarrollador */}
                   <img 
                     src={dev.foto} 
