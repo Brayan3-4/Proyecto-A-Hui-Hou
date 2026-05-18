@@ -431,11 +431,10 @@ export default function CheckoutPage() {
               </div>
             </div>
           </form>
-</div>
         </div>
       </div>
-
-      <Footer />
+    
+    <Footer />
     </div>
   )
 }
