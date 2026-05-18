@@ -1,0 +1,554 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color palette with natural earth tones */
+  --background: oklch(0.98 0.01 120); /* Beige claro */
+  --foreground: oklch(0.35 0.08 160); /* Verde oscuro para texto */
+  --card: oklch(0.99 0.005 80);
+  --card-foreground: oklch(0.35 0.08 160);
+  --popover: oklch(0.99 0.005 80);
+  --popover-foreground: oklch(0.35 0.08 160);
+  --primary: oklch(0.45 0.12 165); /* Verde oscuro #2B7C59 */
+  --primary-foreground: oklch(0.98 0.01 120);
+  --secondary: oklch(0.65 0.08 145); /* Verde claro #7AA77A */
+  --secondary-foreground: oklch(0.25 0.05 160);
+  --muted: oklch(0.88 0.02 80); /* Beige/nuez #D6C5B2 */
+  --muted-foreground: oklch(0.5 0.06 160);
+  --accent: oklch(0.42 0.1 200); /* Azul oscuro/verde azulado #2B587D */
+  --accent-foreground: oklch(0.98 0.01 120);
+  --destructive: oklch(0.55 0.2 30);
+  --destructive-foreground: oklch(0.98 0.01 120);
+  --border: oklch(0.85 0.02 80);
+  --input: oklch(0.85 0.02 80);
+  --ring: oklch(0.45 0.12 165);
+  --chart-1: oklch(0.45 0.12 165); /* Verde oscuro */
+  --chart-2: oklch(0.65 0.08 145); /* Verde claro */
+  --chart-3: oklch(0.42 0.1 200); /* Azul verdoso */
+  --chart-4: oklch(0.65 0.12 50); /* Marrón claro */
+  --chart-5: oklch(0.5 0.15 40); /* Marrón rojizo */
+  --radius: 0.625rem;
+  --sidebar: oklch(0.98 0.01 120);
+  --sidebar-foreground: oklch(0.35 0.08 160);
+  --sidebar-primary: oklch(0.45 0.12 165);
+  --sidebar-primary-foreground: oklch(0.98 0.01 120);
+  --sidebar-accent: oklch(0.88 0.02 80);
+  --sidebar-accent-foreground: oklch(0.35 0.08 160);
+  --sidebar-border: oklch(0.85 0.02 80);
+  --sidebar-ring: oklch(0.45 0.12 165);
+}
+
+.dark {
+  /* Dark mode with adjusted natural tones */
+  --background: oklch(0.2 0.03 160); /* Verde muy oscuro */
+  --foreground: oklch(0.95 0.01 120); /* Beige claro para texto */
+  --card: oklch(0.25 0.04 160);
+  --card-foreground: oklch(0.95 0.01 120);
+  --popover: oklch(0.25 0.04 160);
+  --popover-foreground: oklch(0.95 0.01 120);
+  --primary: oklch(0.65 0.08 145); /* Verde claro en dark mode */
+  --primary-foreground: oklch(0.2 0.03 160);
+  --secondary: oklch(0.35 0.08 160); /* Verde oscuro */
+  --secondary-foreground: oklch(0.95 0.01 120);
+  --muted: oklch(0.3 0.04 160);
+  --muted-foreground: oklch(0.7 0.04 120);
+  --accent: oklch(0.5 0.1 200); /* Azul verdoso más claro */
+  --accent-foreground: oklch(0.95 0.01 120);
+  --destructive: oklch(0.5 0.2 30);
+  --destructive-foreground: oklch(0.95 0.01 120);
+  --border: oklch(0.3 0.04 160);
+  --input: oklch(0.3 0.04 160);
+  --ring: oklch(0.65 0.08 145);
+  --chart-1: oklch(0.65 0.08 145);
+  --chart-2: oklch(0.45 0.12 165);
+  --chart-3: oklch(0.5 0.1 200);
+  --chart-4: oklch(0.65 0.12 50);
+  --chart-5: oklch(0.5 0.15 40);
+  --sidebar: oklch(0.25 0.04 160);
+  --sidebar-foreground: oklch(0.95 0.01 120);
+  --sidebar-primary: oklch(0.65 0.08 145);
+  --sidebar-primary-foreground: oklch(0.2 0.03 160);
+  --sidebar-accent: oklch(0.3 0.04 160);
+  --sidebar-accent-foreground: oklch(0.95 0.01 120);
+  --sidebar-border: oklch(0.3 0.04 160);
+  --sidebar-ring: oklch(0.65 0.08 145);
+}
+
+@theme inline {
+  /* Actualizando a Audiowide para replicar la tipografía del logo */
+  --font-audiowide: "Audiowide", "Audiowide Fallback";
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Custom styles for A Hui Hou */
+.hero-gradient {
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--background)) 50%, hsl(var(--primary)) 100%);
+}
+
+/* Añadiendo gradiente tecnológico de circuitos azul-cyan-verde */
+.circuit-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #1e3a5f 0%,
+    #2b587d 15%,
+    #3a7ca5 30%,
+    #4fb3d4 45%,
+    #5dd9c1 60%,
+    #7aa77a 75%,
+    #2b7c59 90%,
+    #1a5c3f 100%
+  );
+}
+
+.circuit-gradient-text {
+  background: linear-gradient(135deg, #2b587d 0%, #4fb3d4 25%, #5dd9c1 50%, #7aa77a 75%, #2b7c59 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cyan-accent {
+  color: #5dd9c1;
+}
+
+.blue-teal {
+  color: #4fb3d4;
+}
+
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Añadiendo estilo mejorado para texto con efecto tecnológico similar al logo */
+.tech-text {
+  font-family: var(--font-audiowide);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+/* Efecto de líneas horizontales atravesando el texto como en el logo */
+.tech-text::before,
+.tech-text::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(var(--accent)) 20%,
+    hsl(var(--primary)) 50%,
+    hsl(var(--accent)) 80%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+.tech-text::before {
+  top: 35%;
+}
+
+.tech-text::after {
+  bottom: 35%;
+}
+
+/* Puntos de circuito en los extremos */
+.tech-text::before {
+  box-shadow: -8px 0 0 2px hsl(var(--accent)), calc(100% + 8px) 0 0 2px hsl(var(--accent));
+}
+
+/* Estilos de accesibilidad - Alto contraste */
+.high-contrast {
+  --background: oklch(1 0 0) !important;
+  --foreground: oklch(0 0 0) !important;
+  --primary: oklch(0.3 0.15 260) !important;
+  --primary-foreground: oklch(1 0 0) !important;
+  --muted: oklch(0.9 0 0) !important;
+  --muted-foreground: oklch(0 0 0) !important;
+  --border: oklch(0 0 0) !important;
+}
+
+.high-contrast * {
+  border-color: black !important;
+}
+
+.high-contrast a,
+.high-contrast button {
+  text-decoration: underline;
+}
+
+/* Estilos para validación de formularios */
+.input-error {
+  border-color: #ef4444 !important;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Focus visible para accesibilidad de teclado */
+*:focus-visible {
+  outline: 3px solid #2B7C59;
+  outline-offset: 2px;
+}
+
+/* Skip link para accesibilidad */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2B7C59;
+  color: white;
+  padding: 1rem 2rem;
+  z-index: 9999;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ===== ESTÁNDARES W3C - WCAG 2.1 ===== */
+
+/* 1. Contraste de colores - Mínimo 4.5:1 para texto normal, 3:1 para texto grande */
+/* Los colores principales ya cumplen con WCAG AA */
+
+/* 2. Tamaño de fuente mínimo - 16px para texto principal */
+html {
+  font-size: 100%; /* 16px base */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 3. Altura de línea - Mínimo 1.5 para mejor legibilidad */
+body {
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+p, li, td, th {
+  line-height: 1.6;
+}
+
+/* 4. Espaciado entre párrafos - Al menos 1.5 veces el tamaño de fuente */
+p + p {
+  margin-top: 1.5em;
+}
+
+/* 5. Ancho de línea máximo - 80 caracteres para mejor legibilidad */
+.prose, article p, .content p {
+  max-width: 75ch;
+}
+
+/* 6. Fuentes legibles - Sans-serif para pantalla */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: normal;
+}
+
+/* 7. Contraste de enlaces - Diferenciación clara */
+a:not([class]) {
+  color: #2B587D;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:not([class]):hover {
+  color: #1a3a5c;
+  text-decoration-thickness: 2px;
+}
+
+/* 8. Estados de focus visibles - Para navegación por teclado */
+:focus {
+  outline: 2px solid #2B7C59;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid #2B7C59;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* 9. Tamaño mínimo de elementos interactivos - 44x44px para touch */
+button, 
+[role="button"],
+input[type="submit"],
+input[type="button"],
+a.btn {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 10. Cursor pointer para elementos interactivos */
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+select,
+a {
+  cursor: pointer;
+}
+
+/* 11. Indicadores de campos requeridos */
+label[data-required]::after {
+  content: " *";
+  color: #dc2626;
+}
+
+/* 12. Estilos para campos inválidos */
+input:invalid,
+textarea:invalid,
+select:invalid {
+  border-color: #dc2626;
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+  border-color: #2B7C59;
+}
+
+/* 13. Animaciones reducidas para usuarios con preferencias */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 14. Modo de alto contraste del sistema */
+@media (prefers-contrast: high) {
+  :root {
+    --border: oklch(0 0 0);
+  }
+  
+  * {
+    border-width: 2px !important;
+  }
+}
+
+/* 15. Modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+  }
+}
+
+/* 16. Estilos de impresión */
+@media print {
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+  
+  .no-print,
+  nav,
+  footer,
+  button,
+  .btn {
+    display: none !important;
+  }
+}
+
+/* 17. Selección de texto legible */
+::selection {
+  background-color: #2B7C59;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #2B7C59;
+  color: white;
+}
+
+/* 18. Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 19. Bordes consistentes */
+*,
+*::before,
+*::after {
+  border-style: solid;
+  border-width: 0;
+}
+
+/* 20. Tipografía fluida responsive */
+h1 {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.3;
+}
+
+/* 21. Imágenes responsive y accesibles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+img:not([alt]) {
+  outline: 3px dashed #dc2626;
+}
+
+/* 22. Tablas accesibles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-weight: 600;
+  background-color: var(--muted);
+}
+
+/* 23. Listas con espaciado adecuado */
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li + li {
+  margin-top: 0.5rem;
+}
+
+/* 24. Formularios accesibles */
+fieldset {
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: var(--radius);
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+}
+
+/* 25. Indicador de carga accesible */
+[aria-busy="true"] {
+  cursor: wait;
+}
+
+/* 26. Elementos deshabilitados */
+[disabled],
+[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
